@@ -106,14 +106,14 @@ do{
 alert("El total es de $" +carrito.calcularTotal()) */
 
 class Producto {
-  constructor(id, nombre, img, categoria, precio, descripcion) {
+  constructor(id, nombre, img, categoria, precio, descripcion, cantidad = 1) {
     this.id = id;
     this.nombre = nombre;
     this.img = img;
     this.categoria = categoria;
     this.precio = precio;
     this.descripcion = descripcion;
-    this.cantidad = 1;
+    this.cantidad = cantidad;
   }
 
   aumentarCantidad(){
@@ -137,7 +137,7 @@ class Producto {
           <h5 class="card-title">${this.nombre}</h5>
           <p class="card-text">${this.descripcion}</p>
           <p class="card-text">Cantidad: ${this.cantidad}</p>
-          <p class="card-text">$${this.precio}</p>
+          <p class="card-text">Precio x unidad: $${this.precio}</p>
           <button class="btn btn-danger" id="ep-${this.id}">
             <i class="fa-solid fa-trash"></i>
           </button>
@@ -158,7 +158,7 @@ class Producto {
           <h5 class="card-title">${this.nombre}</h5>
           <p class="card-text">${this.descripcion}</p>
           <p class="card-text">Cantidad: ${this.cantidad}</p>
-          <p class="card-text">$${this.precio}</p>
+          <p class="card-text">Precio x unidad: $${this.precio}</p>
           <button class="btn btn-primary" id="ap-${this.id}">Añadir al Carrito</button>
         </div>
       </div>
@@ -257,7 +257,7 @@ class Carrito{
         let listaAux = []
         listaCarritoJS.forEach(producto => {
             //id, nombre, img, categoria, precio, descripcion
-            let nuevoProducto = new Producto(producto.id, producto.nombre, producto.img, producto.categoria, producto.precio, producto.descripcion)
+            let nuevoProducto = new Producto(producto.id, producto.nombre, producto.img, producto.categoria, producto.precio, producto.descripcion, producto.cantidad)
             listaAux.push(nuevoProducto)
             this.listaCarrito = listaAux;
         })
@@ -271,9 +271,10 @@ class Carrito{
         })
 
         this.eventoEliminar()
+        this.mostrarTotal()
       }
 
-      eventoEliminar(){
+    eventoEliminar(){
       this.listaCarrito.forEach(producto => {
           // obtener el id de los botones
           const btn_eliminar = document.getElementById(`ep-${producto.id}`)
@@ -288,6 +289,15 @@ class Carrito{
               this.mostrarEnDOM()
           })
         })
+    }
+
+    calcularTotal(){
+        return this.listaCarrito.reduce((acumulador, producto)=> acumulador + producto.precio * producto.cantidad,0)
+    }
+
+    mostrarTotal(){
+        const precio_total = document.getElementById("precio_total")
+        precio_total.innerText = `Precio total: ${this.calcularTotal()}`
     }
 }
 
