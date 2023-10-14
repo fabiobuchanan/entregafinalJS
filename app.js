@@ -97,8 +97,23 @@ class ProductoController {
       CP.agregar(p12)
   }
 
+  mostrarToastify(){
+    Toastify({
+      text: "¡Producto Añadido!",
+      duration: 2000,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }
+
   mostrarEnDOM() {
     let contenedor_productos = document.getElementById("contenedor_productos")
+    contenedor_productos.innerHTML = ""
     this.listaProductos.forEach(producto => {
       contenedor_productos.innerHTML += producto.descripcionProducto()
     })
@@ -110,6 +125,7 @@ class ProductoController {
             carrito.agregar(producto)
             carrito.guardarEnStorage()
             carrito.mostrarEnDOM()
+            this.mostrarToastify()
         })
     })
   }
@@ -118,6 +134,7 @@ class ProductoController {
 class Carrito{
     constructor(){
         this.listaCarrito = []
+        this.localStorageKey = "listaCarrito"
     }
 
     agregar(productoAgregar){
@@ -141,11 +158,11 @@ class Carrito{
 
     guardarEnStorage(){
         let listaCarritoJSON = JSON.stringify(this.listaCarrito)
-        localStorage.setItem("listaCarrito", listaCarritoJSON)
+        localStorage.setItem(this.localStorageKey, listaCarritoJSON)
     }
 
     recuperarStorage(){
-        let listaCarritoJSON = localStorage.getItem("listaCarrito")
+        let listaCarritoJSON = localStorage.getItem(this.localStorageKey)
         let listaCarritoJS = JSON.parse(listaCarritoJSON)
         let listaAux = []
         if(listaCarritoJS) {
@@ -186,6 +203,34 @@ class Carrito{
         })
     }
 
+    limpiarCarrito(){
+      this.listaCarrito = []
+    }
+
+    eventoFinalizarCompra(){
+      const finalizar_compra = document.getElementById("finalizar_compra")
+
+      finalizar_compra.addEventListener("click", () => {
+
+        // limpiar localStorage
+        localStorage.removeItem(this.localStorageKey)
+
+        //limpiar Carrito
+        this.limpiarCarrito()
+
+        // renderizar
+        this.mostrarEnDOM()
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Compra realizada con éxito!',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      })
+    }
+
     calcularTotal(){
         return this.listaCarrito.reduce((acumulador, producto)=> acumulador + producto.precio * producto.cantidad,0)
     }
@@ -196,9 +241,10 @@ class Carrito{
     }
 }
 
-const CP = new ProductoController();
+const CP = new ProductoController()
 const carrito = new Carrito()
 carrito.recuperarStorage()
 carrito.mostrarEnDOM()
+carrito.eventoFinalizarCompra()
 CP.cargarProductos()
 CP.mostrarEnDOM()
