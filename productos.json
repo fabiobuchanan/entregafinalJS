@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "nombre": "Suscripción Mensual",
+        "img": "img/yoga1.jpg",
+        "categoria": "suscripción",
+        "precio": 20,
+        "descripcion": "Accedé a todas las clases durante un período de un mes."
+    },
+    {
+        "id": 2,
+        "nombre": "Suscripción Semestral",
+        "img": "img/yoga2.jpg",
+        "categoria": "suscripción",
+        "precio": 18,
+        "descripcion": "Accedé a todas las clases durante un período de 6 meses."
+    },
+    {
+        "id": 3,
+        "nombre": "Suscripción Anual",
+        "img": "img/yoga3.jpg",
+        "categoria": "suscripción",
+        "precio": 16,
+        "descripcion": "Accedé a todas las clases durante un período de un año."
+    },
+    {
+        "id": 4,
+        "nombre": "Paquete 3 Clases",
+        "img": "img/yoga4.jpg",
+        "categoria": "clase",
+        "precio": 10,
+        "descripcion": "Accedé a las mejores clases de Yoga."
+    },
+    {
+        "id": 5,
+        "nombre": "Paquete 5 Clases",
+        "img": "img/yoga5.jpg",
+        "categoria": "clase",
+        "precio": 16,
+        "descripcion": "Accedé a las mejores clases de Yoga."
+    },
+    {
+        "id": 6,
+        "nombre": "Paquete 7 Clases",
+        "img": "img/yoga6.jpg",
+        "categoria": "clase",
+        "precio": 24,
+        "descripcion": "Accedé a las mejores clases de Yoga."
+    },
+    {
+        "id": 7,
+        "nombre": "Paquete 9 Clases",
+        "img": "img/yoga7.jpg",
+        "categoria": "clase",
+        "precio": 30,
+        "descripcion": "Accedé a las mejores clases de Yoga."
+    },
+    {
+        "id": 8,
+        "nombre": "Remera",
+        "img": "img/yoga8.jpg",
+        "categoria": "suscripción",
+        "precio": 5000,
+        "descripcion": "Los mejores productos de Yoga para una práctica cómoda y con buena tela."
+    },
+    {
+        "id": 9,
+        "nombre": "Calza",
+        "img": "img/yoga1.jpg",
+        "categoria": "suscripción",
+        "precio": 10000,
+        "descripcion": "Los mejores productos de Yoga para una práctica cómoda y con buena tela."
+    },
+    {
+        "id": 10,
+        "nombre": "Gorra",
+        "img": "img/yoga1.jpg",
+        "categoria": "suscripción",
+        "precio": 4500,
+        "descripcion": "Los mejores productos de Yoga para una práctica cómoda y con buena tela."
+    },
+    {
+        "id": 11,
+        "nombre": "Sweater",
+        "img": "img/yoga1.jpg",
+        "categoria": "suscripción",
+        "precio": 12000,
+        "descripcion": "Los mejores productos de Yoga para una práctica cómoda y con buena tela."
+    },
+    {
+        "id": 12,
+        "nombre": "Campera",
+        "img": "img/yoga1.jpg",
+        "categoria": "suscripción",
+        "precio": 20000,
+        "descripcion": "Los mejores productos de Yoga para una práctica cómoda y con buena tela."
+    }
+]
