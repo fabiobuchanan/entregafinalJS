@@ -29,7 +29,11 @@ class Producto {
         <div class="card-body">
           <h5 class="card-title">${this.nombre}</h5>
           <p class="card-text">${this.descripcion}</p>
-          <p class="card-text">Cantidad: ${this.cantidad}</p>
+          <p class="card-text">Cantidad:
+          <button class="btn btn-dark" id="disminuir-${this.id}"><i class="fa-solid fa-minus"></i></button>
+          ${this.cantidad}
+          <button class="btn btn-dark" id="aumentar-${this.id}"><i class="fa-solid fa-plus"></i></button>
+          </p>
           <p class="card-text">Precio x unidad: $${this.precio}</p>
           <button class="btn btn-danger" id="ep-${this.id}">
             <i class="fa-solid fa-trash"></i>
@@ -41,10 +45,10 @@ class Producto {
   }
 
   descripcionProducto(){
-    return `<div class="card mb-3 border-primary" style="max-width: 540px;">
+    return `<div class="card mb-3 border-primary bg-info text-dark shadow p-3 mb-5 bg-body rounded" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="${this.img}" class="img-fluid rounded-start" alt="${this.alt}">
+        <img src="${this.img}" class="img-fluid rounded-start img-thumbnail" alt="${this.alt}">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -65,6 +69,38 @@ class ProductoController {
     this.listaProductos = []
   }
 
+// ---------------------------------------------------
+
+  eventoFiltro(){
+    const precio_min = document.getElementById("precio_min")
+    const precio_max = document.getElementById("precio_max")
+    let valorMinimo = 0
+    let valorMaximo = Infinity
+
+    precio_min.addEventListener("change", () => {
+      if(precio_min.value > 0){
+      valorMinimo = precio_min.value
+      this.filtrarPorPrecio(valorMinimo, valorMaximo)
+      this.mostrarEnDOM()
+      }
+    })
+
+    precio_max.addEventListener("change", () =>{
+      valorMaximo = precio_max.value
+      this.filtrarPorPrecio(valorMinimo, valorMaximo)
+      this.mostrarEnDOM()
+    })
+
+  }
+
+  filtrarPorPrecio(min=0, max=Infinity){
+    this.listaProductos = []
+    this.preparar_contenedor_productos()
+    this.listaProductos = this.listaProductos.filter(producto => min <= producto.precio && producto.precio <= max)
+  }
+
+  // ----------------------------------------------------------
+
   agregar(producto) {
     if(producto instanceof Producto){
     this.listaProductos.push(producto)
@@ -83,7 +119,7 @@ class ProductoController {
     this.mostrarEnDOM()
   }
 
-  mostrarToastify(){
+  mostrarToastify(producto){
     Toastify({
       text: `¡${producto.nombre} añadido!`,
       avatar: `${producto.img}`,
@@ -112,7 +148,7 @@ class ProductoController {
             carrito.agregar(producto)
             carrito.guardarEnStorage()
             carrito.mostrarEnDOM()
-            this.mostrarToastify()
+            this.mostrarToastify(producto)
         })
     })
   }
@@ -170,6 +206,8 @@ class Carrito{
         })
 
         this.eventoEliminar()
+        this.eventoAumentarCantidad()
+        this.eventoDisminuirCantidad()
         this.mostrarTotal()
       }
 
@@ -188,6 +226,30 @@ class Carrito{
               this.mostrarEnDOM()
           })
         })
+    }
+
+    eventoAumentarCantidad(){
+      this.listaCarrito.forEach(producto => {
+        // obtener el id de los botones
+        const btn_aumentar = document.getElementById(`aumentar-${producto.id}`)
+    
+        btn_aumentar.addEventListener("click", ()=>{
+            producto.aumentarCantidad()
+            this.mostrarEnDOM()
+        })
+      })
+    }
+
+    eventoDisminuirCantidad(){
+      this.listaCarrito.forEach(producto => {
+        // obtener el id de los botones
+        const btn_disminuir = document.getElementById(`disminuir-${producto.id}`)
+
+        btn_disminuir.addEventListener("click", ()=>{
+            producto.disminuirCantidad()
+            this.mostrarEnDOM()
+        })
+      })
     }
 
     limpiarCarrito(){
@@ -240,3 +302,4 @@ carrito.eventoFinalizarCompra()
 //CP.mostrarEnDOM()
 
 CP.preparar_contenedor_productos()
+CP.eventoFiltro()
