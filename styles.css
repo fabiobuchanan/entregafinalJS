@@ -4,3 +4,14 @@
     text-align: center;
     
 }
+
+.iconmel2 {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.iconmel {
+    height: 70px;
+    width: 70px;
+}

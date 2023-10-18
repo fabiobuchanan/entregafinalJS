@@ -20,20 +20,71 @@
   </head>
   <body class="bg-success p-2 text-dark bg-opacity-10">
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary position-relative">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-success navbar-dark">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">Melina Foster - Saber en Movimiento</a>
+
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"  aria-label="Toggle navigation"
+      aria-controls="navbarSupportedContent" aria-expanded="false" data-mdb-target="#navbarSupportedContent">
+          <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!-- Link -->
+              <li class="nav-item">
+                  <a class="nav-link text-white" href="#">Link</a>
+              </li>
+
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                  data-mdb-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                  </a>
+                  <!-- Dropdown menu -->
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li>
+                          <a class="dropdown-item" href="#">Action</a>
+                      </li>
+                      <li>
+                          <a class="dropdown-item" href="#">Another action</a>
+                      </li>
+                      <li>
+                          <hr class="dropdown-divider" />
+                      </li>
+                      <li>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+
+          <!-- Icons -->
+          <ul class="navbar-nav d-flex flex-row me-1 iconmel2">
+              <li class="nav-item me-3 me-lg-0">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  </button>
+              </li>
+              <li class="nav-item me-3 me-lg-0">
+                <img src="/img/Icono1.png" class="iconmel" alt="">
+              </li>
+          </ul>
+      </div>
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+  <!--   <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"
-            >Melina Foster - Saber en Movimiento - Productos</a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <a class="navbar-brand" href="#">Melina Foster - Saber en Movimiento - Productos</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,15 +93,7 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false" 
-                >
-                  Dropdown
-                </a>
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -59,16 +102,18 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                   </li>
                 </ul>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary position-absolute top-50 start-100 translate-middle" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-      
-              </li>
-            </ul>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  </button>
+        
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+                <!-- Button trigger modal -->
+             
+     
     </header>
     <main class="container-fluid">
       <section>
